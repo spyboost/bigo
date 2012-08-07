@@ -1,4 +1,5 @@
-UFTest = TestCase('UF');
+'use strict';
+var UFTest = TestCase('UF');
 UFTest.prototype.testUnion = function testUnion(){
 	var uf = new bigo.UF(1000);
 	uf.union(1, 2);

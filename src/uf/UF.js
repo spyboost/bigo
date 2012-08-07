@@ -1,5 +1,4 @@
 'use strict';
-
 window.bigo = window.bigo || {};
 bigo.UF = /**
  * @param {Number} size
