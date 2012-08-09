@@ -1,6 +1,8 @@
 'use strict';
-window.bigo = window.bigo || {};
-bigo.UF =
+/**
+ * @namespace Bigo.
+ */
+var bigo = bigo || {};
 /**
  * The weighted quick-union solution to dynamic connectivity problem. For the given input numbers it finds whether a given pairs of numbers are connected.
  * The connection of two numbers is a equivalence relation, which means:
@@ -34,10 +36,11 @@ bigo.UF =
  * assertFalse(uf.connected(9,10));
  * </pre>
  * </code>
- * @param {Number} size - the number of elements
- * @returns {bigo.UF} a new instance of {@link bigo.UF}
+ * @param Number size - the number of elements
+ * @returns bigo.UF a new instance of {@link bigo.UF}
+ * @constructor
  */
-function UF(size){
+bigo.UF = function (size){
 	var count = size;
 	var id = [];
 	for(var i = 0; i < size; i++)
@@ -73,7 +76,7 @@ function UF(size){
 
 	this.connected = /**
 	 * @param {Number} p
-	 * @param {Number q
+	 * @param {Number} q
 	 * @returns {Boolean} <code>true</code> if connected, otherwise <code>false</code>
 	 */
 	function connected(p, q){

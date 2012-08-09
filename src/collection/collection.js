@@ -18,8 +18,7 @@
 
 			return maxMin;
 		}
-		if(i > 0)
-			i--;
+
 		var sum = this[i];
 		start = i;
 		end = i;
@@ -29,11 +28,7 @@
 		for(++i; i < this.length; i++){
 			var v = this[i];
 			if(v > 0){
-				if(sum <= 0){
-					sum = v;
-					start = i;
-				}else
-					sum += v;
+				sum += v;
 				end = i;
 			}else{
 				if(sum > maxSum){
@@ -44,8 +39,15 @@
 				for(; i < this.length && this[i] <= 0; i++)
 					if(sum > 0)
 						sum += this[i];
-				if(i < this.length)
-					i--;
+				if(i < this.length){
+					if(sum <= 0){
+						sum = this[i];
+						start = i;
+					}else{
+						sum += this[i];
+						end = i;
+					}
+				}
 			}
 		}
 		if(sum > maxSum){
@@ -61,6 +63,7 @@
 	/**
 	 * Finds the max subsequence sum.
 	 * @returns {Number} the max subsequence sum
+	 * @type Number
 	 */
 	Array.prototype.maxSubSum = function(){
 		return findMaxSubSum.call(this);
