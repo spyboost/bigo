@@ -9,7 +9,12 @@ var bigo = bigo || {};
  */
 bigo.collection = bigo.collection || {};
 /**
- * Priority queue based on a priority heap.
+ * Priority queue based on a priority heap. Performance:
+ * <ul>
+ * <li>O(log(N)) - for the enquing and dequing methods(<code>offer()</code>, <code>poll()</code>)</li>
+ * <li>O(N) - for the remove(element) method</li>
+ * <li>constant time - for the retrieval methods(<code>peek()</code>, <code>size()</code>) and the <code>length</code> and <code>size</code> properties</li>
+ * </ul>
  * @param comparator Function the comparator used to compare elements in the queue
  * @constructor
  */
@@ -27,7 +32,7 @@ bigo.collection.PriorityQueue = function(comparator){
 		if(s)
 			siftUp(s, element);
 		else
-			q.push(element);
+			q[0] = element;
 	};
 
 	function siftUp(s, element){
@@ -88,9 +93,33 @@ bigo.collection.PriorityQueue = function(comparator){
 	/**
 	 * Removes the specified element from the queue.
 	 * @param element the element to remove
+	 * @return <code>true</code> if removed, otherwise <code>false</code>
 	 */
 	this.remove = function(element){
+		var i = q.indexOf(element);
+        if (i == -1)
+            return false;
+
+        removeAt(i);
+        return true;
 	};
+
+	function removeAt(i){
+		var s = --size;
+        if (s == i)
+            q[i] = null;
+        else {
+            var moved = q[s];
+            q[s] = null;
+            siftDown(i, moved);
+            if (q[i] == moved) {
+                siftUp(i, moved);
+                if (q[i] != moved)
+                    return moved;
+            }
+        }
+        return null;
+	}
 
 	Object.defineProperty(this, 'length', {
 		get: function(){

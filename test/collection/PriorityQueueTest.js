@@ -44,5 +44,20 @@ PriorityQueueTest.prototype.testPriorityQueue = function(){
 
 	assertEquals(null, pq.peek());
 	assertEquals('length', 3, pq.length);
-	assertEquals('size', 2, pq.size);
+	assertEquals('size', 0, pq.size);
+
+	pq.offer(3);
+	pq.offer(0);
+	pq.offer(7);
+	assertEquals('length', 3, pq.length);
+	assertEquals('size', 3, pq.size);
+	pq.offer(2);
+	assertEquals('length', 4, pq.length);
+	assertEquals('size', 4, pq.size);
+	assertTrue(pq.remove(7));
+	assertEquals('length', 4, pq.length);
+	assertEquals('size', 3, pq.size);
+	assertFalse(pq.remove(7));
+	assertEquals('length', 4, pq.length);
+	assertEquals('size', 3, pq.size);
 };
