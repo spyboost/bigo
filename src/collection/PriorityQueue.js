@@ -12,7 +12,7 @@ bigo.collection = bigo.collection || {};
  * Priority queue based on a priority heap. Performance:
  * <ul>
  * <li>O(log(N)) - for the enquing and dequing methods(<code>offer()</code>, <code>poll()</code>)</li>
- * <li>O(N) - for the remove(element) method</li>
+ * <li>O(N) - for the <code>remove(element)</code> method</li>
  * <li>constant time - for the retrieval methods(<code>peek()</code>, <code>size()</code>) and the <code>length</code> and <code>size</code> properties</li>
  * </ul>
  * @param comparator Function the comparator used to compare elements in the queue
